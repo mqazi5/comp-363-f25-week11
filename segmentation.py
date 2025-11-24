@@ -119,7 +119,7 @@ def can_segment_dp(A: str) -> list[str] | None:
     """
     n = len(A)
     
-    # Initialize the dp array to track if prefix A[:i] is segmentable
+    # initialize the dp array to track if prefix A[:i] is segmentable
     dp  = [False] * (n + 1)
     
     # parent array keeps track of the index where the last word starts
@@ -138,7 +138,7 @@ def can_segment_dp(A: str) -> list[str] | None:
                 parent[i] = j  # record where the last word starts
             j += 1
 
-    # Reconstruct the segmentation by backtracking through parent array
+    # backtrack through parent array and add segmented words to a seperate array
     segmentation = None
     if dp[n]:
         segmentation = []
@@ -151,7 +151,7 @@ def can_segment_dp(A: str) -> list[str] | None:
     return segmentation
 
 
-# Test the function
+# Tests
 if __name__ == "__main__":
     # Test cases
     test_strings = [
@@ -163,14 +163,11 @@ if __name__ == "__main__":
         "forecastsunlightmidnight"
     ]
     
-    print("Testing can_segment_dp function:\n")
-    print("-" * 80)
     
     for test_str in test_strings:
+        print(f"Testing string: '{test_str}'")
         result = can_segment_dp(test_str)
         if result:
-            print(f"✓ '{test_str}'")
-            print(f"  Segmentation: {result}\n")
+            print(f"✓ Segmentation: {result}\n")
         else:
-            print(f"✗ '{test_str}'")
-            print(f"  Cannot be segmented\n")
+            print("✗ Cannot be segmented\n")
